@@ -1,0 +1,98 @@
+basePath: ""
+definitions:
+    User:
+        description: ""
+        properties:
+            id:
+                type: number
+                format: double
+                description: ""
+            name:
+                type: string
+                description: ""
+            surname:
+                type: string
+                description: ""
+            email:
+                type: string
+                description: ""
+            role:
+                type: string
+                description: ""
+            password:
+                type: string
+                description: ""
+            creationDate:
+                type: string
+                format: date-time
+                description: ""
+        type: object
+        required:
+            - id
+            - name
+            - surname
+            - email
+            - role
+            - password
+            - creationDate
+info:
+    description: 'A starter template for NodeJS'
+    license:
+        name: MIT
+    title: 'NodeJS Boilerplate'
+    version: '1.0'
+paths:
+    /api/v1/user/list:
+        get:
+            operationId: UserGetUsers
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: 'Users list or error'
+                    schema:
+                        type: object
+                    examples:
+                        application/json:
+                            status: 'ok || error'
+                            data: 'Response data with users if status==ok'
+                            code: 'Error code if status==error'
+                            msg: 'Error message if status==error'
+            description: 'List all users'
+            summary: null
+            tags:
+                - User
+            parameters: []
+    /api/v1/user/create:
+        post:
+            operationId: UserCreateUser
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: 'User created or error'
+                    schema:
+                        type: object
+                    examples:
+                        application/json:
+                            status: 'ok || error'
+                            data: 'Response data with users if status==ok'
+                            code: 'Error code if status==error'
+                            msg: 'Error message if status==error'
+            description: 'Create user object'
+            summary: null
+            tags:
+                - User
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: body
+                    name: userJson
+                    required: true
+                    schema:
+                        $ref: '#/definitions/User'
+swagger: '2.0'
+securityDefinitions: {}
+host: 'localhost:3000'

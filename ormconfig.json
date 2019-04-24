@@ -1,0 +1,48 @@
+[
+   {
+      "name": "development",
+      "type": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "username": "postgres",
+      "password": "postgres",
+      "database": "development",
+      "synchronize": true,
+      "logging": false,
+      "entities": [ "src/entity/index.ts" ],
+      "migrations": [
+         "src/migration/**/*.ts"
+      ],
+      "subscribers": [
+         "src/subscriber/**/*.ts"
+      ],
+      "cli": {
+         "entitiesDir": "src/entity",
+         "migrationsDir": "src/migration",
+         "subscribersDir": "src/subscriber"
+      }
+   },
+   {
+      "name": "test",
+      "type": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "username": "postgres",
+      "password": "postgres",
+      "database": "test",
+      "synchronize": true,
+      "logging": false,
+      "entities": [ "src/entity/index.ts" ],
+      "migrations": [
+      "src/migration/**/*.ts"
+      ],
+      "subscribers": [
+      "src/subscriber/**/*.ts"
+      ],
+      "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+      }
+   }
+]

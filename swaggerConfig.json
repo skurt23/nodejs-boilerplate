@@ -1,0 +1,12 @@
+{
+  "swagger": {
+    "outputDirectory": "./",
+    "entryFile": "./src/controllers/index.ts",
+    "host": "localhost:3000",
+    "version": "1.0",
+    "name": "NodeJS Boilerplate",
+    "description": "A starter template for NodeJS",
+    "license": "MIT",
+    "basePath": ""
+  }
+}

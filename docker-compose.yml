@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  postgresql:
+    image: postgres:9.6-alpine
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./postgresql/backup:/docker-entrypoint-initdb.d
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    restart: always
+
+  node:
+    build: .
+    depends_on:
+      - postgresql
+    environment:
+      - HOST=postgresql
+    ports:
+      - "3000:3000"
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4:$PGADMIN_IMAGE
+    depends_on:
+      - postgresql
+    env_file:
+      - ./.env
+    ports:
+      - "8280:8280"
+    restart: always
+
+
+  nginx:
+    image: nginx:$NGINX_IMAGE
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - node
+      - pgadmin
+    environment:
+      - VIRTUAL_HOST
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+
+volumes:
+    pg_data:
+    node_data:
